@@ -17,4 +17,9 @@ public class CategorieService extends AbstractFacade<Categorie>{
         super(Categorie.class);
     }
     
+    public int test(int a){
+        return a+1 ;
+       
+    }
+    
 }
