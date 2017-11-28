@@ -26,7 +26,7 @@ public class LigneCart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany
+    @OneToOne
     private Food food;
     private int qte;
     @ManyToOne

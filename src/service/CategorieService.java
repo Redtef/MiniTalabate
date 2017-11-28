@@ -17,9 +17,9 @@ public class CategorieService extends AbstractFacade<Categorie>{
         super(Categorie.class);
     }
     
-    public int test(int a){
-        return a+1 ;
-       
+    public void creerCat(String nom){
+        Categorie c = new Categorie(nom);
+        create(c);
     }
     
 }

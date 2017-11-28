@@ -20,8 +20,16 @@ public class Categorie implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+
+    public Categorie() {
+    }
+
+    public Categorie(String id) {
+        this.id = id;
+    }
+    
+    
 
     public String getId() {
         return id;
