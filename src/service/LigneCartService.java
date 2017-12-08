@@ -5,16 +5,16 @@
  */
 package service;
 
-import bean.LigneCart;
+import bean.LignePanier;
 
 /**
  *
  * @author Boss
  */
-public class LigneCartService extends AbstractFacade<LigneCart>{
+public class LigneCartService extends AbstractFacade<LignePanier>{
     
     public LigneCartService() {
-        super(LigneCart.class);
+        super(LignePanier.class);
     }
     
 }

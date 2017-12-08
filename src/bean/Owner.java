@@ -26,8 +26,6 @@ public class Owner implements Serializable {
     private String telNumber;
     private String email;
     private String password;
-    @ManyToOne
-    private Adresse adresse;
     @OneToMany(mappedBy = "owner")
     private List<Restaurant> restaurants;
 
@@ -38,24 +36,22 @@ public class Owner implements Serializable {
         this.login = login;
     }
 
-    public Owner(String login, String nom, String prenom, String telNumber, String email, String password, Adresse adresse) {
+    public Owner(String login, String nom, String prenom, String telNumber, String email, String password) {
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
         this.telNumber = telNumber;
         this.email = email;
         this.password = password;
-        this.adresse = adresse;
     }
 
-    public Owner(String login, String nom, String prenom, String telNumber, String email, String password, Adresse adresse, List<Restaurant> restaurants) {
+    public Owner(String login, String nom, String prenom, String telNumber, String email, String password, List<Restaurant> restaurants) {
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
         this.telNumber = telNumber;
         this.email = email;
         this.password = password;
-        this.adresse = adresse;
         this.restaurants = restaurants;
     }
 
@@ -107,13 +103,6 @@ public class Owner implements Serializable {
         this.password = password;
     }
 
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
-    }
 
     public List<Restaurant> getRestaurants() {
         return restaurants;
@@ -133,7 +122,7 @@ public class Owner implements Serializable {
 
     @Override
     public String toString() {
-        return "Owner{" + "login=" + login + ", nom=" + nom + ", prenom=" + prenom + ", telNumber=" + telNumber + ", email=" + email + ", password=" + password + ", adresse=" + adresse + '}';
+        return "Owner{" + "login=" + login + ", nom=" + nom + ", prenom=" + prenom + ", telNumber=" + telNumber + ", email=" + email + ", password=" + password + ", adresse="+ '}';
     }
 
 

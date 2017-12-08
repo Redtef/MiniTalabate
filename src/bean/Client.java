@@ -34,9 +34,9 @@ public class Client implements Serializable {
     @ManyToOne
     private Adresse adresse;
     @OneToOne
-    private Cart cart;
-    @OneToMany(mappedBy = "client")
-    private List<ChoixSupplement> choixSupplements;
+    private Panier cart;
+//    @OneToMany(mappedBy = "client")
+//    private List<ChoixSupplement> choixSupplements;
 
     public Client() {
     }
@@ -108,11 +108,11 @@ public class Client implements Serializable {
         this.adresse = adresse;
     }
 
-    public Cart getCart() {
+    public Panier getCart() {
         return cart;
     }
 
-    public void setCart(Cart cart) {
+    public void setCart(Panier cart) {
         this.cart = cart;
     }
 

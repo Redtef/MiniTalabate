@@ -28,8 +28,8 @@ public class ChoixSupplement implements Serializable {
     private Long id;
     @OneToMany
     private List<Supplement> supplements;
-    @OneToOne
-    private Food food;
+//    @OneToOne
+//    private Food food;
     @ManyToOne
     private Client client;
 
@@ -40,15 +40,14 @@ public class ChoixSupplement implements Serializable {
         this.id = id;
     }
 
-    public ChoixSupplement(List<Supplement> supplements, Food food, Client client) {
+    public ChoixSupplement(List<Supplement> supplements, Client client) {
         this.supplements = supplements;
-        this.food = food;
         this.client = client;
     }
 
     @Override
     public String toString() {
-        return "ChoixSupplement{" + "id=" + id + ", food=" + food.getNom() + ", client=" + client.getNom() + '}';
+        return "ChoixSupplement{" + "id=" + id + " client=" + client.getNom() + '}';
     }
 
     public List<Supplement> getSupplements() {
@@ -59,14 +58,7 @@ public class ChoixSupplement implements Serializable {
         this.supplements = supplements;
     }
 
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
-
+   
     public Client getClient() {
         return client;
     }

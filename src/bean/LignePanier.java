@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -20,7 +19,7 @@ import javax.persistence.OneToOne;
  * @author Boss
  */
 @Entity
-public class LigneCart implements Serializable {
+public class LignePanier implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,7 +29,9 @@ public class LigneCart implements Serializable {
     private Food food;
     private int qte;
     @ManyToOne
-    private Cart cart;
+    private Panier cart;
+    @OneToOne
+    private ChoixSupplement choixSupplement;
 
     public Food getFood() {
         return food;
@@ -48,18 +49,37 @@ public class LigneCart implements Serializable {
         this.qte = qte;
     }
 
-    public Cart getCart() {
+    public Panier getCart() {
         return cart;
     }
 
-    public void setCart(Cart cart) {
+    public void setCart(Panier cart) {
         this.cart = cart;
     }
 
-    public LigneCart() {
+    public LignePanier(Long id) {
+        this.id = id;
     }
 
-    public LigneCart(Food food, int qte) {
+    public LignePanier(Food food, int qte, Panier cart, ChoixSupplement choixSupplement) {
+        this.food = food;
+        this.qte = qte;
+        this.cart = cart;
+        this.choixSupplement = choixSupplement;
+    }
+
+    public LignePanier() {
+    }
+
+    public ChoixSupplement getChoixSupplement() {
+        return choixSupplement;
+    }
+
+    public void setChoixSupplement(ChoixSupplement choixSupplement) {
+        this.choixSupplement = choixSupplement;
+    }
+
+    public LignePanier(Food food, int qte) {
         this.food = food;
         this.qte = qte;
     }
@@ -82,10 +102,10 @@ public class LigneCart implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LigneCart)) {
+        if (!(object instanceof LignePanier)) {
             return false;
         }
-        LigneCart other = (LigneCart) object;
+        LignePanier other = (LignePanier) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,9 +114,11 @@ public class LigneCart implements Serializable {
 
     @Override
     public String toString() {
-        return "LigneCart{" + "food=" + food + ", qte=" + qte + '}';
+        return "LignePanier{" + "id=" + id + ", food=" + food + ", qte=" + qte + '}';
     }
 
+    
+    
    
 
 }

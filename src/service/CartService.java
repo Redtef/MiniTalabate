@@ -5,16 +5,16 @@
  */
 package service;
 
-import bean.Cart;
+import bean.Panier;
 
 /**
  *
  * @author Boss
  */
-public class CartService extends AbstractFacade<Cart> {
+public class CartService extends AbstractFacade<Panier> {
 
     public CartService() {
-        super(Cart.class);
+        super(Panier.class);
     }
     
 }

@@ -32,8 +32,8 @@ public class Food implements Serializable {
     private List<Ingredient> ingredients;
     @OneToMany(mappedBy = "food")
     private List<Supplement> supplements;
-    @OneToMany
-    private List<ChoixSupplement> choixSupplements;
+//    @OneToMany
+//    private List<ChoixSupplement> choixSupplements;
    
     
     

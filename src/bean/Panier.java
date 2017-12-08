@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
  * @author delll
  */
 @Entity
-public class Cart implements Serializable {
+public class Panier implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,9 +32,9 @@ public class Cart implements Serializable {
     @OneToOne
     private Restaurant resto;
     @OneToMany(mappedBy = "cart")
-    private List<LigneCart> ligneCarts;
+    private List<LignePanier> ligneCarts;
 
-    public Cart(Client client, Restaurant resto) {
+    public Panier(Client client, Restaurant resto) {
         this.client = client;
         this.resto = resto;
     }
@@ -63,24 +63,24 @@ public class Cart implements Serializable {
         this.resto = resto;
     }
 
-    public Cart(float prixTotal, Client client, Restaurant resto) {
+    public Panier(float prixTotal, Client client, Restaurant resto) {
         this.prixTotal = prixTotal;
         this.client = client;
         this.resto = resto;
     }
 
-    public List<LigneCart> getLigneCarts() {
+    public List<LignePanier> getLigneCarts() {
         if(ligneCarts == null){
             ligneCarts = new ArrayList();
         }
         return ligneCarts;
     }
 
-    public void setLigneCarts(List<LigneCart> ligneCarts) {
+    public void setLigneCarts(List<LignePanier> ligneCarts) {
         this.ligneCarts = ligneCarts;
     }
 
-    public Cart() {
+    public Panier() {
     }
 
     public Integer getId() {
@@ -101,10 +101,10 @@ public class Cart implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cart)) {
+        if (!(object instanceof Panier)) {
             return false;
         }
-        Cart other = (Cart) object;
+        Panier other = (Panier) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
