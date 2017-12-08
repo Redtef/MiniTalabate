@@ -29,7 +29,7 @@ public class FoodService extends AbstractFacade<Food>{
             query += " AND f.menu ='" + menu +"'";
         }
         if (categorie != null) {
-            query += " AND f.specialite ='" + categorie +"'";
+            query += " AND f.specialite.nom ='" + categorie.getNom() +"'";
         }
         return getEntityManager().createQuery(query).getResultList();
 

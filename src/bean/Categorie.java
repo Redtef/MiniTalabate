@@ -7,8 +7,6 @@ package bean;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -20,40 +18,40 @@ public class Categorie implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    private String id;
+    private String nom;
 
     public Categorie() {
     }
 
-    public Categorie(String id) {
-        this.id = id;
+    public Categorie(String nom) {
+        this.nom = nom;
     }
     
     
 
-    public String getId() {
-        return id;
+    public String getNom() {
+        return nom;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (nom != null ? nom.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the nom fields are not set
         if (!(object instanceof Categorie)) {
             return false;
         }
         Categorie other = (Categorie) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.nom == null && other.nom != null) || (this.nom != null && !this.nom.equals(other.nom))) {
             return false;
         }
         return true;
@@ -61,7 +59,7 @@ public class Categorie implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Categorie[ id=" + id + " ]";
+        return "bean.Categorie[ id=" + nom + " ]";
     }
     
 }

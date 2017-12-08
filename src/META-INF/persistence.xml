@@ -4,7 +4,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>bean.Adresse</class>
     <class>bean.Categorie</class>
-    <class>bean.ChoixSupplement</class>
     <class>bean.Client</class>
     <class>bean.Food</class>
     <class>bean.Ingredient</class>
@@ -15,8 +14,13 @@
     <class>bean.Restaurant</class>
     <class>bean.SuperAdmin</class>
     <class>bean.Supplement</class>
+    <class>bean.LigneSupplement</class>
+    <class>bean.PricingSupplement</class>
+    <class>bean.PricingFood</class>
+    <class>bean.Composition</class>
+    <class>bean.Favoris</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/talabate?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/minitalabate?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>

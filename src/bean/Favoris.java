@@ -6,58 +6,44 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author delll
  */
 @Entity
-public class ChoixSupplement implements Serializable {
+public class Favoris implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany
-    private List<Supplement> supplements;
-//    @OneToOne
-//    private Food food;
+    @ManyToOne
+    private Food food;
     @ManyToOne
     private Client client;
 
-    public ChoixSupplement() {
+    public Favoris() {
     }
 
-    public ChoixSupplement(Long id) {
-        this.id = id;
-    }
-
-    public ChoixSupplement(List<Supplement> supplements, Client client) {
-        this.supplements = supplements;
+    public Favoris(Food food, Client client) {
+        this.food = food;
         this.client = client;
     }
 
-    @Override
-    public String toString() {
-        return "ChoixSupplement{" + "id=" + id + " client=" + client.getNom() + '}';
+    public Food getFood() {
+        return food;
     }
 
-    public List<Supplement> getSupplements() {
-        return supplements;
+    public void setFood(Food food) {
+        this.food = food;
     }
 
-    public void setSupplements(List<Supplement> supplements) {
-        this.supplements = supplements;
-    }
-
-   
     public Client getClient() {
         return client;
     }
@@ -65,6 +51,10 @@ public class ChoixSupplement implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
+  
+
+    
+    
     
     
     public Long getId() {
@@ -85,15 +75,14 @@ public class ChoixSupplement implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ChoixSupplement)) {
+        if (!(object instanceof Favoris)) {
             return false;
         }
-        ChoixSupplement other = (ChoixSupplement) object;
+        Favoris other = (Favoris) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-     
 }

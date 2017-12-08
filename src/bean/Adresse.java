@@ -6,14 +6,10 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -26,7 +22,7 @@ public class Adresse implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ville;
     private String cite;
@@ -34,10 +30,10 @@ public class Adresse implements Serializable {
     private int etage;
     private String immeuble;
     private int num;
-     @OneToMany(mappedBy = "adresse")
-    private List<Client> clients;
-     @OneToOne(mappedBy = "adresse")
-    private Restaurant restaurant;
+
+
+
+
 
     public String getVille() {
         return ville;
@@ -87,24 +83,6 @@ public class Adresse implements Serializable {
         this.num = num;
     }
 
-    public List<Client> getClients() {
-        if(clients == null){
-            clients = new ArrayList();
-        }
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 
     public Adresse(String ville, String cite, String rue, int num) {
         this.ville = ville;

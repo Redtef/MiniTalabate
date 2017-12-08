@@ -10,41 +10,47 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author delll
  */
 @Entity
-public class Ingredient implements Serializable {
+public class Composition implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    private String nom;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    private Ingredient ingredient;
+    @ManyToOne
+    private Food food;
 
-    public String getNom() {
-        return nom;
+    public Long getId() {
+        return id;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (nom != null ? nom.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the nom fields are not set
-        if (!(object instanceof Ingredient)) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Composition)) {
             return false;
         }
-        Ingredient other = (Ingredient) object;
-        if ((this.nom == null && other.nom != null) || (this.nom != null && !this.nom.equals(other.nom))) {
+        Composition other = (Composition) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -52,7 +58,7 @@ public class Ingredient implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Ingredient[ id=" + nom + " ]";
+        return "bean.Composition[ id=" + id + " ]";
     }
     
 }

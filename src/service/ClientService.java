@@ -19,11 +19,8 @@ public class ClientService extends AbstractFacade<Client>{
     
     public int creer(String login , String nom , String prenom ){
         Client client = new Client(login, nom, prenom) ;
-//        client.setLogin(login);
-//        client.setNom(nom);
-//        client.setPrenom(prenom);
         create(client);
         return 1;
     }
-    
+
 }

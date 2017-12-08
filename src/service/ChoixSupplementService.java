@@ -5,16 +5,16 @@
  */
 package service;
 
-import bean.ChoixSupplement;
+import bean.LigneSupplement;
 
 /**
  *
  * @author Boss
  */
-public class ChoixSupplementService extends AbstractFacade<ChoixSupplement> {
+public class ChoixSupplementService extends AbstractFacade<LigneSupplement> {
 
     public ChoixSupplementService() {
-        super(ChoixSupplement.class);
+        super(LigneSupplement.class);
     }
     
 }

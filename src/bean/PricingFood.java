@@ -6,6 +6,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ import javax.persistence.ManyToOne;
  * @author delll
  */
 @Entity
-public class Supplement implements Serializable {
+public class PricingFood implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,7 +26,53 @@ public class Supplement implements Serializable {
     private Long id;
     @ManyToOne
     private Food food;
- 
+    @ManyToOne
+    private Restaurant restaurant;
+    private BigDecimal prix;
+
+    
+    
+    public PricingFood() {
+    }
+
+    public PricingFood(Long id) {
+        this.id = id;
+    }
+
+    public PricingFood(Food food, Restaurant restaurant, BigDecimal prix) {
+        this.food = food;
+        this.restaurant = restaurant;
+        this.prix = prix;
+    }
+
+    
+    
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public BigDecimal getPrix() {
+        return prix;
+    }
+
+    public void setPrix(BigDecimal prix) {
+        this.prix = prix;
+    }
+
+    
+    
     
     public Long getId() {
         return id;
@@ -35,24 +82,6 @@ public class Supplement implements Serializable {
         this.id = id;
     }
 
-    public Supplement() {
-    }
-
-    public Supplement(Long id) {
-        this.id = id;
-    }
-
-    public Food getFood() {
-        if(food == null){
-            food = new Food();
-        }
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -63,14 +92,19 @@ public class Supplement implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Supplement)) {
+        if (!(object instanceof PricingFood)) {
             return false;
         }
-        Supplement other = (Supplement) object;
+        PricingFood other = (PricingFood) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
- }
+    @Override
+    public String toString() {
+        return "bean.PricingFood[ id=" + id + " ]";
+    }
+    
+}

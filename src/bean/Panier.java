@@ -6,6 +6,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -25,25 +26,25 @@ public class Panier implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private float prixTotal;
+    private Long id;
+    private BigDecimal prixTotal;
     @OneToOne(mappedBy = "cart")
     private Client client;
     @OneToOne
     private Restaurant resto;
-    @OneToMany(mappedBy = "cart")
-    private List<LignePanier> ligneCarts;
+    @OneToMany(mappedBy = "panier")
+    private List<LignePanier> lignePaniers;
 
     public Panier(Client client, Restaurant resto) {
         this.client = client;
         this.resto = resto;
     }
 
-    public float getPrixTotal() {
+    public BigDecimal getPrixTotal() {
         return prixTotal;
     }
 
-    public void setPrixTotal(float prixTotal) {
+    public void setPrixTotal(BigDecimal prixTotal) {
         this.prixTotal = prixTotal;
     }
 
@@ -63,31 +64,31 @@ public class Panier implements Serializable {
         this.resto = resto;
     }
 
-    public Panier(float prixTotal, Client client, Restaurant resto) {
+    public Panier(BigDecimal prixTotal, Client client, Restaurant resto) {
         this.prixTotal = prixTotal;
         this.client = client;
         this.resto = resto;
     }
 
-    public List<LignePanier> getLigneCarts() {
-        if(ligneCarts == null){
-            ligneCarts = new ArrayList();
+    public List<LignePanier> getLignePaniers() {
+        if(lignePaniers == null){
+            lignePaniers = new ArrayList();
         }
-        return ligneCarts;
+        return lignePaniers;
     }
 
-    public void setLigneCarts(List<LignePanier> ligneCarts) {
-        this.ligneCarts = ligneCarts;
+    public void setLignePaniers(List<LignePanier> lignePaniers) {
+        this.lignePaniers = lignePaniers;
     }
 
     public Panier() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -116,8 +117,5 @@ public class Panier implements Serializable {
         return "Cart{" + "id=" + id + ", prixTotal=" + prixTotal + ", client=" + client + ", resto=" + resto.getNom() + '}';
     }
 
-  
-
-   
 
 }

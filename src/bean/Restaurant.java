@@ -6,17 +6,16 @@
 package bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalTime;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
  *
- * @author Boss
+ * @author Yassine
  */
 @Entity
 public class Restaurant implements Serializable {
@@ -27,23 +26,21 @@ public class Restaurant implements Serializable {
     private LocalTime heureOuverture;
     private LocalTime heureFermeture;
     private Boolean livraison;
-    private long prixLivraison;
-    private float commission;
+    private BigDecimal prixLivraison;
+    private BigDecimal commission;
     @OneToOne
     private Adresse adresse;
     @ManyToOne
     private Owner owner;
     @OneToOne
     private Menu menu; 
-//    @OneToMany(mappedBy = "resto")
-//    private List<Supplement> ingredients;
     @OneToOne
-    private Categorie specialite;
+    private Categorie categorie;
 
     public Restaurant() {
     }
 
-    public Restaurant(String nom, LocalTime heureOuverture, LocalTime heureFermeture, Boolean livraison, long prixLivraison, float commission, Adresse adresse, Owner owner, Menu menu, Categorie specialite) {
+    public Restaurant(String nom, LocalTime heureOuverture, LocalTime heureFermeture, Boolean livraison, BigDecimal prixLivraison, BigDecimal commission, Adresse adresse, Owner owner, Menu menu, Categorie specialite) {
         this.nom = nom;
         this.heureOuverture = heureOuverture;
         this.heureFermeture = heureFermeture;
@@ -53,10 +50,10 @@ public class Restaurant implements Serializable {
         this.adresse = adresse;
         this.owner = owner;
         this.menu = menu;
-        this.specialite = specialite;
+        this.categorie = specialite;
     }
 
-    public Restaurant(LocalTime heureOuverture, LocalTime heureFermeture, Boolean livraison, long prixLivraison, float commission) {
+    public Restaurant(LocalTime heureOuverture, LocalTime heureFermeture, Boolean livraison, BigDecimal prixLivraison, BigDecimal commission) {
         this.heureOuverture = heureOuverture;
         this.heureFermeture = heureFermeture;
         this.livraison = livraison;
@@ -88,19 +85,19 @@ public class Restaurant implements Serializable {
         this.livraison = livraison;
     }
 
-    public long getPrixLivraison() {
+    public BigDecimal getPrixLivraison() {
         return prixLivraison;
     }
 
-    public void setPrixLivraison(long prixLivraison) {
+    public void setPrixLivraison(BigDecimal prixLivraison) {
         this.prixLivraison = prixLivraison;
     }
 
-    public float getCommission() {
+    public BigDecimal getCommission() {
         return commission;
     }
 
-    public void setCommission(float commission) {
+    public void setCommission(BigDecimal commission) {
         this.commission = commission;
     }
 
@@ -135,6 +132,14 @@ public class Restaurant implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     @Override

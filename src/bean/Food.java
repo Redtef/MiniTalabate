@@ -8,6 +8,8 @@ package bean;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,19 +23,47 @@ import javax.persistence.OneToMany;
 public class Food implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     private Menu menu;
     private String nom;
-    private float prix;
     @ManyToOne
     private Categorie categorie;
-    @OneToMany
-    private List<Ingredient> ingredients;
     @OneToMany(mappedBy = "food")
     private List<Supplement> supplements;
-//    @OneToMany
-//    private List<ChoixSupplement> choixSupplements;
+
+    public Food(Menu menu, String nom, Categorie categorie, List<Supplement> supplements) {
+        this.menu = menu;
+        this.nom = nom;
+        this.categorie = categorie;
+        this.supplements = supplements;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+
+    public List<Supplement> getSupplements() {
+        return supplements;
+    }
+
+    public void setSupplements(List<Supplement> supplements) {
+        this.supplements = supplements;
+    }
    
     
     
@@ -57,24 +87,9 @@ public class Food implements Serializable {
     }
 
 
-    public float getPrix() {
-        return prix;
-    }
-
-    public void setPrix(float prix) {
-        this.prix = prix;
-    }
-
     public Food() {
     }
 
-    public String getId() {
-        return nom;
-    }
-
-    public void setId(String id) {
-        this.nom = id;
-    }
 
     @Override
     public int hashCode() {

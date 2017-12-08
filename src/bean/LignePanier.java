@@ -23,15 +23,15 @@ public class LignePanier implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     private Food food;
     private int qte;
     @ManyToOne
-    private Panier cart;
+    private Panier panier;
     @OneToOne
-    private ChoixSupplement choixSupplement;
+    private LigneSupplement LigneSupplement;
 
     public Food getFood() {
         return food;
@@ -49,34 +49,31 @@ public class LignePanier implements Serializable {
         this.qte = qte;
     }
 
-    public Panier getCart() {
-        return cart;
+    public LigneSupplement getLigneSupplement() {
+        return LigneSupplement;
     }
 
-    public void setCart(Panier cart) {
-        this.cart = cart;
+    public void setLigneSupplement(LigneSupplement LigneSupplement) {
+        this.LigneSupplement = LigneSupplement;
+    }
+
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
     }
 
     public LignePanier(Long id) {
         this.id = id;
     }
 
-    public LignePanier(Food food, int qte, Panier cart, ChoixSupplement choixSupplement) {
+    public LignePanier(Food food, int qte, Panier panier, LigneSupplement LigneSupplement) {
         this.food = food;
         this.qte = qte;
-        this.cart = cart;
-        this.choixSupplement = choixSupplement;
-    }
-
-    public LignePanier() {
-    }
-
-    public ChoixSupplement getChoixSupplement() {
-        return choixSupplement;
-    }
-
-    public void setChoixSupplement(ChoixSupplement choixSupplement) {
-        this.choixSupplement = choixSupplement;
+        this.panier = panier;
+        this.LigneSupplement = LigneSupplement;
     }
 
     public LignePanier(Food food, int qte) {

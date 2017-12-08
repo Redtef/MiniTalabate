@@ -6,12 +6,9 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -29,15 +26,12 @@ public class Client implements Serializable {
     private String prenom;
     private String telNumber;
     private String email;
-    @OneToMany
-    private List<Food> favoris;
     @ManyToOne
     private Adresse adresse;
     @OneToOne
     private Panier cart;
-//    @OneToMany(mappedBy = "client")
-//    private List<ChoixSupplement> choixSupplements;
 
+    
     public Client(String login, String nom, String prenom) {
         this.login = login;
         this.nom = nom;
@@ -96,16 +90,6 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public List<Food> getFavoris() {
-        if(favoris == null){
-            favoris = new ArrayList();
-        }
-        return favoris;
-    }
-
-    public void setFavoris(List<Food> favoris) {
-        this.favoris = favoris;
-    }
 
     public Adresse getAdresse() {
         return adresse;
