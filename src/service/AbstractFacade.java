@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package service;
 
 import java.util.List;
@@ -7,13 +12,12 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author jsp
- * @param <T>
+ * @author Younes
  */
 public class AbstractFacade<T> {
 
     private static final String PERSISTENCE_UNIT_NAME = "MiniTalabatePU";
-    private final Class<T> entityClass;
+    private Class<T> entityClass;
     private EntityManager em;
 
     public AbstractFacade(Class<T> entityClass) {
@@ -32,7 +36,6 @@ public class AbstractFacade<T> {
         getEntityManager().getTransaction().begin();
         getEntityManager().persist(entity);
         getEntityManager().getTransaction().commit();
-
     }
 
     public void edit(T entity) {
@@ -46,11 +49,18 @@ public class AbstractFacade<T> {
         getEntityManager().getTransaction().begin();
         getEntityManager().remove(getEntityManager().merge(entity));
         getEntityManager().getTransaction().commit();
-
     }
 
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
+    }
+
+    public Long generateId(String beanName, String idName) {
+        List<Long> maxId = getEntityManager().createQuery(" Select max(item." + idName + ") FROM " + beanName + " item").getResultList();
+        if (maxId == null || maxId.isEmpty() || maxId.get(0) == null) {
+            return 1L;
+        }
+        return maxId.get(0) + 1;
     }
 
     public List<T> findAll() {
@@ -63,7 +73,7 @@ public class AbstractFacade<T> {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
-        q.setMaxResults(range[1] - range[0]);
+        q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
         return q.getResultList();
     }

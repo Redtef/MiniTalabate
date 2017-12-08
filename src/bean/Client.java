@@ -38,6 +38,13 @@ public class Client implements Serializable {
 //    @OneToMany(mappedBy = "client")
 //    private List<ChoixSupplement> choixSupplements;
 
+    public Client(String login, String nom, String prenom) {
+        this.login = login;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+    
+
     public Client() {
     }
 
