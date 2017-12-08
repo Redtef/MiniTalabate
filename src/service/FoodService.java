@@ -5,7 +5,10 @@
  */
 package service;
 
+import bean.Categorie;
 import bean.Food;
+import bean.Menu;
+import java.util.List;
 
 /**
  *
@@ -17,4 +20,18 @@ public class FoodService extends AbstractFacade<Food>{
         super(Food.class);
     }
     
+     public List<Food> findByCriteria(Menu menu,Categorie categorie,String nom) {
+        String query = "SELECT f FROM Restaurant f WHERE 1=1";
+        if (nom != null) {
+            query += " AND f.nom='" + nom + "'";
+        }
+        if (menu != null) {
+            query += " AND f.menu ='" + menu +"'";
+        }
+        if (categorie != null) {
+            query += " AND f.specialite ='" + categorie +"'";
+        }
+        return getEntityManager().createQuery(query).getResultList();
+
+    }
 }

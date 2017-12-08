@@ -43,6 +43,19 @@ public class Restaurant implements Serializable {
     public Restaurant() {
     }
 
+    public Restaurant(String nom, LocalTime heureOuverture, LocalTime heureFermeture, Boolean livraison, long prixLivraison, float commission, Adresse adresse, Owner owner, Menu menu, Categorie specialite) {
+        this.nom = nom;
+        this.heureOuverture = heureOuverture;
+        this.heureFermeture = heureFermeture;
+        this.livraison = livraison;
+        this.prixLivraison = prixLivraison;
+        this.commission = commission;
+        this.adresse = adresse;
+        this.owner = owner;
+        this.menu = menu;
+        this.specialite = specialite;
+    }
+
     public Restaurant(LocalTime heureOuverture, LocalTime heureFermeture, Boolean livraison, long prixLivraison, float commission) {
         this.heureOuverture = heureOuverture;
         this.heureFermeture = heureFermeture;
